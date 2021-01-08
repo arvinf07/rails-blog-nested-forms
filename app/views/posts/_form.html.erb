@@ -10,21 +10,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+ 
+  <div class="field"> 
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
     <%= f.label :content %><br>
     <%= f.text_area :content %><br>
     Tags:
-  </div>
-
+  </div>   
+  <h3>Add Tags</h3>  
   <div class="field">
     <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
+    
+    <%= f.fields_for :tags, @post.tags.build do |t| %>
+      <%= t.label :name %>
+      <%= t.text_field :name, id: "Name" %>
+      <br>
+    <%end%>  
   </div>
 
   <div class="actions">
     <%= f.submit %>
-  </div>
+      </div>
 
 <% end %>
